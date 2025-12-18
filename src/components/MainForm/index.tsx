@@ -15,6 +15,7 @@ import { Tips } from '../Tips';
 export function MainForm() {
   const { state, dispatch } = useTaskContext();
   const taskNameInput = useRef<HTMLInputElement>(null);
+  const lastTaskName = state.tasks[state.tasks.length - 1]?.name || '';
   // const [taskName, setTaskName] = useState('');
 
   const nextCycle = getNextCycle(state.currentCycle);
@@ -57,10 +58,9 @@ export function MainForm() {
           id='meuInput'
           type='text'
           placeholder='Digite aqui'
-          //value={taskName}
-          //onChange={e => setTaskName(e.target.value)}
           ref={taskNameInput}
           disabled={!!state.activeTask}
+          defaultValue={lastTaskName}
         />
       </div>
       <div className='formRow'>
